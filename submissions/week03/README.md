@@ -2,11 +2,11 @@
 
 ## Student information
 
-- Name: Add before submission
-- Student ID: Add before submission
+- Name: ZHANG, Boxiang
+- Student ID: 21344801
 - Repository: https://github.com/BoxiangZ/starterMAIE600C
 - Checkpoint tag: `w03-readiness`
-- Commit SHA: Add after the final commit is tagged
+- Checkpoint commit: resolve with `git rev-parse 'w03-readiness^{commit}'`
 
 ## 1. What I changed
 
@@ -24,7 +24,16 @@ the documented container-based verification command is reproducible.
 - `Dockerfile`
 - `submissions/week03/README.md`
 
-## 3. How I verified it
+## 3. How to run it
+
+1. Copy `.env.example` to `.env` if a local environment file does not exist.
+2. Run `docker compose up --build` from the repository root.
+3. Open the API documentation at `http://localhost:8000/docs`, or use the value of
+   `API_HOST_PORT` from `.env` if the host port was changed.
+4. Create a case with `POST /cases`, then inspect its background job with
+   `GET /jobs/{job_id}` or list jobs with `GET /jobs?status=pending&limit=20`.
+
+## 4. How I verified it
 
 - `docker compose config --quiet` completed successfully.
 - `docker compose build --no-cache api` completed successfully.
@@ -40,13 +49,12 @@ the documented container-based verification command is reproducible.
   status returned `422`.
 - `git diff --check` passed with no whitespace errors.
 
-## 4. Known limitations or notes
+## 5. Known limitations or notes
 
 - The endpoint uses limit-only listing and does not yet provide cursor or offset pagination.
 - Filtering supports one exact job status at a time.
-- Name, student ID, and final tagged commit SHA must be filled in before submission.
 
-## 5. AI Use Statement
+## 6. AI Use Statement
 
 OpenAI Codex was used to inspect the starter repository and Lab 3 brief, implement the
 bounded endpoint and tests, update the container verification setup, and draft this summary.
